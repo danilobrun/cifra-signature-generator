@@ -166,7 +166,14 @@
       <form id="signature-form">
         <div class="form-group">
           <label for="name">Nome:</label>
-          <input type="text" id="name" placeholder="Digite seu nome" required />
+          <input
+            type="text"
+            id="name"
+            placeholder="Digite seu nome"
+            required
+            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu nome.')"
+            oninput="setCustomValidity('')"
+          />
         </div>
         <div class="form-group">
           <label for="role">Função:</label>
@@ -175,6 +182,8 @@
             id="role"
             placeholder="Digite sua função"
             required
+            oninvalid="this.setCustomValidity('Por favor, preencha este campo com sua função.')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -184,6 +193,8 @@
             id="contract"
             placeholder="Informe o contrato exemplo GNR Russas, DESO, Cadastro"
             required
+            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu contrato.')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -193,6 +204,8 @@
             id="phone"
             placeholder="Somente números DD+Número exemplo: 81988887777"
             required
+            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu número.')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -202,6 +215,8 @@
             id="email"
             placeholder="Digite seu e-mail"
             required
+            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu e-mail @cifraengenharia.com.br caso não tenha entre em contato com a GTI-Cifra.')"
+            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
