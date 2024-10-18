@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Gerador de assinatura eletrônica para os funcionários da Cifra Engenharia e Serviços."
+    />
+    <link rel="icon" href="./images/logo-cifra-transparent.png" />
+    <title>✍🏻 Gerador de Assinatura</title>
+    <style>
+      /* Estilo global com tema claro e moderno */
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .container {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+        margin: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f5f5f5;
+        font-size: 14px;
+        color: #333;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+
+      /* Estilo do botão com design moderno */
+      .form-group button {
+        width: 100%;
+        padding: 12px;
+        background-color: #3498db;
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-group button:hover {
+        background-color: #2980b9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group button:active {
+        background-color: #1c6eaa;
+      }
+
+      .signature {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        display: none;
+      }
+
+      .signature img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .signature .logo {
+        width: 80px;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 0%;
+      }
+
+      .signature p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      .signature a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .signature a:hover {
+        text-decoration: underline;
+      }
+
+      .social-icons {
+        margin-top: 10px;
+      }
+
+      .social-icons a {
+        margin-right: 10px;
+      }
+
+      .social-icons img {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Gerador de Assinatura ✍🏻</h1>
+      <form id="signature-form">
+        <div class="form-group">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" placeholder="Digite seu nome" required />
+        </div>
+        <div class="form-group">
+          <label for="role">Função:</label>
+          <input
+            type="text"
+            id="role"
+            placeholder="Digite sua função"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="contract">Contrato:</label>
+          <input
+            type="text"
+            id="contract"
+            placeholder="Informe o contrato exemplo GNR Russas, DESO, Cadastro"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefone (WhatsApp):</label>
+          <input
+            type="text"
+            id="phone"
+            placeholder="Somente números DD+Número exemplo: 81988887777"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Digite seu e-mail"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="photo-url">URL da Foto:</label>
+          <input
+            type="url"
+            id="photo-url"
+            placeholder="Digite a URL da sua foto"
+            required
+          />
+        </div>
+        <!-- Novos campos para LinkedIn, Instagram e GitHub -->
+        <div class="form-group">
+          <label for="linkedin">URL do LinkedIn:</label>
+          <input
+            type="url"
+            id="linkedin"
+            placeholder="Digite a URL do seu perfil no LinkedIn"
+          />
+        </div>
+        <div class="form-group">
+          <label for="instagram">URL do Instagram:</label>
+          <input
+            type="url"
+            id="instagram"
+            placeholder="Digite a URL do seu perfil no Instagram"
+          />
+        </div>
+        <div class="form-group">
+          <label for="github">URL do GitHub:</label>
+          <input
+            type="url"
+            id="github"
+            placeholder="Digite a URL do seu perfil no GitHub"
+          />
+        </div>
+
+        <button type="submit">Gerar Assinatura</button>
+      </form>
+
+      <div class="signature" id="signature-preview">
+        <table style="width: 100%">
+          <tr>
+            <td style="vertical-align: middle; text-align: center">
+              <img id="user-photo" class="user-photo" alt="Sua Foto" />
+              <br />
+              <img
+                src="https://cifraengenharia.com.br/wp-content/uploads/2018/08/logo-site.png"
+                alt="Logo Cifra"
+                class="logo"
+              />
+            </td>
+            <td style="padding-left: 15px; vertical-align: middle">
+              <p
+                id="signature-name"
+                style="font-size: 16px; font-weight: bold; color: #2c3e50"
+              ></p>
+              <p id="signature-role" style="font-size: 14px; color: #555"></p>
+              <p
+                id="signature-contract"
+                style="font-size: 14px; color: #555"
+              ></p>
+              <p><strong>Cifra Engenharia e Serviços</strong></p>
+              <p style="font-size: 14px">
+                <!-- Ícone do WhatsApp e número clicável -->
+                <a
+                  id="signature-whatsapp"
+                  href="#"
+                  target="_blank"
+                  style="color: #3498db"
+                  ><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                    alt="WhatsApp"
+                    style="width: 20px; height: 20px; vertical-align: middle" />
+                  <span id="whatsapp-number"></span></a
+                ><br />
+                ✉️ <a id="signature-email" href="#" style="color: #3498db"></a
+                ><br />
+                🌐
+                <a href="https://www.cifraengenharia.com.br"
+                  >cifraengenharia.com.br</a
+                ><br />
+                📍
+                <a
+                  href="https://www.google.com.br/maps/dir//Av.+Dr.+José+Augusto+Moreira,+900+-+Casa+Caiada,+Olinda+-+PE,+53130-410"
+                  >Av. Dr. José Augusto Moreira, 900 - Casa Caiada, Olinda - PE,
+                  53130-410</a
+                >
+              </p>
+              <!-- Ícones de redes sociais -->
+              <div class="social-icons">
+                <a
+                  id="linkedin-icon"
+                  href="#"
+                  target="_blank"
+                  style="display: none"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                    alt="LinkedIn"
+                  />
+                </a>
+                <a
+                  id="instagram-icon"
+                  href="#"
+                  target="_blank"
+                  style="display: none"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png"
+                    alt="Instagram"
+                  />
+                </a>
+                <a
+                  id="github-icon"
+                  href="#"
+                  target="_blank"
+                  style="display: none"
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                    alt="GitHub"
+                  />
+                </a>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // Aplicando a máscara de telefone
+      document.getElementById("phone").addEventListener("input", function (e) {
+        const x = e.target.value
+          .replace(/\D/g, "")
+          .match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2]
+          ? x[1]
+          : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      });
+
+      document
+        .getElementById("signature-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Captura os valores dos inputs
+          const name = document.getElementById("name").value;
+          const role = document.getElementById("role").value;
+          const phone = document
+            .getElementById("phone")
+            .value.replace(/\D/g, "");
+          const email = document.getElementById("email").value;
+          const photoUrl = document.getElementById("photo-url").value;
+          const contract = document.getElementById("contract").value;
+          const linkedin = document.getElementById("linkedin").value;
+          const instagram = document.getElementById("instagram").value;
+          const github = document.getElementById("github").value;
+
+          // Preenche os campos na assinatura
+          document.getElementById("signature-name").textContent = name;
+          document.getElementById("signature-role").textContent = role;
+          document.getElementById(
+            "signature-whatsapp"
+          ).href = `https://wa.me/55${phone}`;
+          document.getElementById(
+            "whatsapp-number"
+          ).textContent = `+55 ${phone}`;
+          document.getElementById("signature-email").href = `mailto:${email}`;
+          document.getElementById("signature-email").textContent = email;
+          document.getElementById("user-photo").src = photoUrl;
+          document.getElementById("signature-contract").textContent =
+            "Contrato: " + contract;
+
+          // Exibe os ícones de redes sociais se os links forem preenchidos
+          if (linkedin) {
+            document.getElementById("linkedin-icon").href = linkedin;
+            document.getElementById("linkedin-icon").style.display =
+              "inline-block";
+          }
+          if (instagram) {
+            document.getElementById("instagram-icon").href = instagram;
+            document.getElementById("instagram-icon").style.display =
+              "inline-block";
+          }
+          if (github) {
+            document.getElementById("github-icon").href = github;
+            document.getElementById("github-icon").style.display =
+              "inline-block";
+          }
+
+          // Exibe a assinatura
+          document.getElementById("signature-preview").style.display = "block";
+        });
+    </script>
+  </body>
+</html>
