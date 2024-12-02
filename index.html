@@ -54,7 +54,7 @@
 
       .form-group input {
         width: 100%;
-        height: 35px;
+        padding: 12px;
         border: 1px solid #ddd;
         border-radius: 8px;
         background-color: #f5f5f5;
@@ -149,31 +149,53 @@
     <div class="container">
       <h1>Gerador de Assinatura ✍🏻</h1>
       <div
-        class="cifra-card"
-        style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 10px;
-        "
-      >
-        <img
-          src="https://cifraengenharia.com.br/wp-content/uploads/2018/08/logo-site.png"
-          alt="Logo Cifra"
-          class="logo"
-        />
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  "
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
+    alt="YouTube"
+    style="width: 30px; height: 30px; margin-right: 10px;"
+  />
+  <a
+    href="https://www.youtube.com"
+    target="_blank"
+    style="
+      font-size: 16px;
+      color: #c4302b;
+      text-decoration: none;
+      font-weight: bold;
+    "
+  >
+    Tutorial Gerador de Assinatura, assista!
+  </a>
+</div>
+
+      
+      <div style="margin-top: 20px; text-align: center; font-size: 16px;">
+        📸 
+        <a 
+          href="https://postimages.org" 
+          target="_blank" 
+          style="color: #3498db; text-decoration: none; font-weight: bold;"
+        >
+          Clique aqui e hospede sua imagem
+        </a>
       </div>
+      
       <form id="signature-form">
         <div class="form-group">
           <label for="name">Nome:</label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Digite seu nome"
-            required
-            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu nome.')"
-            oninput="setCustomValidity('')"
-          />
+          <input type="text" id="name" placeholder="Digite seu nome" required />
         </div>
         <div class="form-group">
           <label for="role">Função:</label>
@@ -182,8 +204,6 @@
             id="role"
             placeholder="Digite sua função"
             required
-            oninvalid="this.setCustomValidity('Por favor, preencha este campo com sua função.')"
-            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -193,10 +213,17 @@
             id="contract"
             placeholder="Informe o contrato exemplo GNR Russas, DESO, Cadastro"
             required
-            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu contrato.')"
-            oninput="setCustomValidity('')"
           />
         </div>
+        <div class="form-group">
+          <label for="landline">Telefone Fixo:</label>
+          <input
+            type="text"
+            id="landline"
+            placeholder="Somente números DD+Número exemplo: 8133337777"
+            required
+          />
+        </div>        
         <div class="form-group">
           <label for="phone">Telefone (WhatsApp):</label>
           <input
@@ -204,8 +231,6 @@
             id="phone"
             placeholder="Somente números DD+Número exemplo: 81988887777"
             required
-            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu número.')"
-            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -215,8 +240,6 @@
             id="email"
             placeholder="Digite seu e-mail"
             required
-            oninvalid="this.setCustomValidity('Por favor, preencha este campo com seu e-mail @cifraengenharia.com.br caso não tenha entre em contato com a GTI-Cifra.')"
-            oninput="setCustomValidity('')"
           />
         </div>
         <div class="form-group">
@@ -225,6 +248,7 @@
             type="url"
             id="photo-url"
             placeholder="Digite a URL da sua foto"
+            required
           />
         </div>
         <!-- Novos campos para LinkedIn, Instagram e GitHub -->
@@ -280,6 +304,10 @@
               ></p>
               <p><strong>Cifra Engenharia e Serviços</strong></p>
               <p style="font-size: 14px">
+                <p style="font-size: 14px">
+                  📞 <span id="landline-number"></span><br />
+                </p>
+                
                 <!-- Ícone do WhatsApp e número clicável -->
                 <a
                   id="signature-whatsapp"
@@ -358,6 +386,16 @@
           : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
       });
 
+      document.getElementById("landline").addEventListener("input", function (e) {
+        const x = e.target.value
+          .replace(/\D/g, "")
+          .match(/(\d{0,2})(\d{0,4})(\d{0,4})/);
+        e.target.value = !x[2]
+          ? x[1]
+          : "(" + x[1] + ") " + x[2] + (x[3] ? "-" + x[3] : "");
+      });
+
+
       document
         .getElementById("signature-form")
         .addEventListener("submit", function (e) {
@@ -365,6 +403,12 @@
 
           // Captura os valores dos inputs
           const name = document.getElementById("name").value;
+          const landline = document.getElementById("landline").value.replace(/\D/g, "");
+          document.getElementById("landline-number").textContent = `+55 (${landline.slice(
+            0,
+            2
+          )}) ${landline.slice(2, 6)}-${landline.slice(6)}`;
+
           const role = document.getElementById("role").value;
           const phone = document
             .getElementById("phone")
